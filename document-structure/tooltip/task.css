@@ -1,25 +1,29 @@
 .header {
-  margin-bottom: 20px;
-}
-
-.has-tooltip {
-  color: #000;
-  background: yellow;
-}
-
-.has-tooltip:hover {
-  color: red;
-}
-
-.tooltip {
-  position: fixed;
-  display: none;
-  background: black;
-  padding: 5px;
-  border-radius: 5px;
-  color: #fff;
-}
-
-.tooltip_active {
-  display: block;
-}
+	margin-bottom: 20px;
+  }
+  
+  .has-tooltip {
+	color: #000;
+	background: yellow;
+  }
+  
+  .has-tooltip:hover {
+	color: red;
+  }
+  
+  .tooltip {
+	position: absolute;
+	display: none;
+	background: black;
+	padding: 5px;
+	border-radius: 5px;
+	color: #fff;
+	max-width: 200px; /* Ограничение максимальной ширины подсказки */
+	white-space: nowrap; /* Запрет переноса текста на новую строку */
+	overflow: hidden; /* Скрытие содержимого, выходящего за границы подсказки */
+	text-overflow: ellipsis; /* Отображение многоточия для текста, выходящего за границы подсказки */
+  }
+  
+  .tooltip_active {
+	display: block;
+  }

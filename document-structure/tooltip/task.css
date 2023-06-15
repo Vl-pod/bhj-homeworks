@@ -7,10 +7,6 @@
 	background: yellow;
   }
   
-  .has-tooltip:hover {
-	color: red;
-  }
-  
   .tooltip {
 	position: absolute;
 	display: none;
@@ -18,12 +14,12 @@
 	padding: 5px;
 	border-radius: 5px;
 	color: #fff;
-	max-width: 200px; /* Ограничение максимальной ширины подсказки */
-	white-space: nowrap; /* Запрет переноса текста на новую строку */
-	overflow: hidden; /* Скрытие содержимого, выходящего за границы подсказки */
-	text-overflow: ellipsis; /* Отображение многоточия для текста, выходящего за границы подсказки */
+	max-width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
   }
   
   .tooltip_active {
-	display: block;
+	display: inline-block;
   }

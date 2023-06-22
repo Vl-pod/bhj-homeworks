@@ -1,44 +1,31 @@
-const tooltips = document.querySelectorAll('.has-tooltip');
+document.addEventListener('DOMContentLoaded', function () {
+        let tooltipElements = document.querySelectorAll('.has-tooltip');
+        let activeTooltip = null;
 
-// Создаем элемент для подсказки
-const tooltipElement = document.createElement('div');
-tooltipElement.classList.add('tooltip');
-document.body.appendChild(tooltipElement);
+        tooltipElements.forEach(function (element) {
+            element.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
 
-// Обработчик события клика
-function handleTooltipClick(event) {
-  event.preventDefault();
-  event.stopPropagation();
-
-  const isActive = this.classList.contains('tooltip_active');
-
-  tooltips.forEach((tooltip) => {
-    tooltip.classList.remove('tooltip_active');
-    tooltip.style.color = '#000';
-  });
-
-  if (!isActive) {
-    const tooltipText = this.getAttribute('title');
-    tooltipElement.textContent = tooltipText;
-
-    const elementRect = this.getBoundingClientRect();
-    const tooltipHeight = tooltipElement.offsetHeight;
-    const tooltipWidth = tooltipElement.offsetWidth;
-    const tooltipTop = elementRect.top - tooltipHeight - 10;
-    const tooltipLeft = elementRect.left + elementRect.width / 2 - tooltipWidth / 2;
-
-    tooltipElement.style.top = tooltipTop + 'px';
-    tooltipElement.style.left = tooltipLeft + 'px';
-
-    this.classList.add('tooltip_active');
-    this.style.color = 'red';
-  } else {
-    this.classList.remove('tooltip_active');
-    this.style.color = '#000';
-  }
-}
-
-// Добавляем обработчик клика для каждой ссылки с классом "has-tooltip"
-tooltips.forEach((tooltip) => {
-  tooltip.addEventListener('click', handleTooltipClick);
-});
+                if (activeTooltip && activeTooltip.parentElement === element) {
+                        activeTooltip.classList.remove('tooltip_active');
+                        activeTooltip = null;
+                } else {
+                    if (activeTooltip) {
+                            activeTooltip.classList.remove('tooltip_active');
+                    }
+                    activeTooltip = element.querySelector('.tooltip');
+                    if (!activeTooltip) {
+                        activeTooltip = document.createElement('div');
+                        activeTooltip.className = 'tooltip';
+                        activeTooltip.innerText = element.dataset.title;
+                        element.appendChild(activeTooltip);
+                    }
+                    activeTooltip.style.left = element.getBoundingClientRect().left + 'px';
+                    activeTooltip.style.top = element.getBoundingClientRect().bottom + 2 + window.scrollY + 'px';
+                    activeTooltip.classList.add('tooltip_active');
+                }
+            });
+        });
+    });
+    

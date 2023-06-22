@@ -1,12 +1,17 @@
 .header {
 	margin-bottom: 20px;
   }
-  
+
   .has-tooltip {
 	color: #000;
 	background: yellow;
+	position: relative;
   }
-  
+
+  .has-tooltip:hover {
+	color: red;
+  }
+
   .tooltip {
 	position: absolute;
 	display: none;
@@ -14,12 +19,11 @@
 	padding: 5px;
 	border-radius: 5px;
 	color: #fff;
-	max-width: 200px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	top: 100%;
+	left: 0;
   }
-  
+
   .tooltip_active {
-	display: inline-block;
-  }
+	display: block;
+
+	
